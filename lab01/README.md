@@ -1,6 +1,43 @@
-# CUDA in Actions: First CUDA Programs
+# Say Hello to CUDA: Writing your first CUDA program
 
 ## Introduction 
+
+### Hello World C and CUDA side-by-side
+<table>
+<tr><td> C </td><td> CUDA </td></tr>
+<tr>
+<td>
+
+```C
+void c_hello(){
+    printf("Hello World!\n");
+}
+
+int main() {
+    c_hello()
+    return 0;
+}
+```
+
+</td>
+<td>
+
+```C
+__global__ void cuda_hello(){
+    printf("Hello World from GPU!\n");
+}
+
+int main() {
+    cuda_hello<<<1,1>>>(); 
+    return 0;
+}
+```
+
+</td>
+</tr>
+</table>
+
+
 
 ### Vector Addition in C
 
