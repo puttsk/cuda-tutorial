@@ -201,7 +201,7 @@ $> time ./vector_add
 
 ## Profiling performance 
 
-Using `time` does not give much information about the program performance. NVIDIA provides a commandline profiler tool called `nvprof`. 
+Using `time` does not give much information about the program performance. NVIDIA provides a commandline profiler tool called `nvprof`, which give a more insight information of CUDA program performance.  
 
 To profile our vector addition, use following command
 
@@ -211,7 +211,7 @@ $> nvprof ./vector_add
 
 Following is an example profiling result
 
-```bash
+```
 ==28348== NVPROF is profiling process 28348, command: ./vector_add
 PASSED
 ==28348== Profiling application: ./a.out
@@ -219,6 +219,13 @@ PASSED
 Time(%)      Time     Calls       Avg       Min       Max  Name
  97.43%  1.81668s         1  1.81668s  1.81668s  1.81668s  vector_add(float*, float*, float*, int)
 ```
+
+## Wrap up
+
+In this tutorial, we demonstrate how to write a simple vector addition in CUDA. We introduced GPU kernels and its execution from host code. Moreover, we introduced the concept of separated memory space between CPU and GPU. We also demonstrate how to manage the device memory. 
+
+However, we still not run program in parallel. The kernel execution configuration `<<<1,1>>>` indicates that the kernel is launched with only 1 thread. In the next [tutorial](../lab02), we will modify vector addition to run in parallel. 
+
 
 ## Acknowledgments
 

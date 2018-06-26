@@ -10,7 +10,7 @@ These instructions will get you a copy of the tutorial up and running on your CU
 
 > For JCSSE 2018 workshop attendees, you can skip this step. 
 
-We expect you to have access to CUDA-enabled GPUs (see. [here](https://developer.nvidia.com/cuda-gpus)). 
+We expect you to have access to CUDA-enabled GPUs (see. [here](https://developer.nvidia.com/cuda-gpus)) and have sufficient C/C++ programming knowledge. 
 
 Following softwares are required for compiling the tutorials 
   * [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads) 
