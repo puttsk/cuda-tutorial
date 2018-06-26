@@ -2,7 +2,7 @@
 
 ## Introduction 
 
-This tutorial is an introduction for writing your first CUDA C program. 
+This tutorial is an introduction for writing your first CUDA C program. We will use CUDA runtime API throughout this tutorial. 
 
 ## A quick comparison between CUDA and C
 
@@ -66,7 +66,7 @@ This warning can be ignored as of now.
 
 The CUDA hello world example does nothing, and even if the program is compiled, nothing will show up on screen. To get things into action, we will looks at vector addition. 
 
-Following is an example vector addition implemented in C ([`./vector_add.c`](./vector_add.c)).
+Following is an example vector addition implemented in C ([`./vector_add.c`](./vector_add.c)). The example computes the addtion of two vectors stored in array `a` and `b` and put the result in array `out`.
 
 ```C
 #define N 10000000
@@ -96,7 +96,7 @@ int main(){
 
 ```
 
-## Exercise 1: Converting vector addition to CUDA
+## Exercise: Converting vector addition to CUDA
 
 In the first exercise, we will convert `vector_add.c` to CUDA program `vector_add.cu` by using the hello world as example.
 
@@ -128,7 +128,97 @@ $> nvcc vector_add.c -o vector_add
 $> ./vector_add
 ```
 
-You will notice that the program does not work correctly.
+You will notice that the program does not work correctly. The reason is CPU and GPUs are separate entities. Both have their own memory space. CPU cannot directly access GPU memory, and vice versa. In CUDA terminology, CPU memory is called *host memory* and GPU memory is called *device memory*. Pointers to CPU and GPU memory are called *host pointer* and *device pointer*, respectively. 
+
+For data to be accessible by GPU, it must be presented in the device memory. CUDA provides APIs for allocating device memory and data transfer between host and device memory. Following is the common workflow of CUDA programs. 
+
+1. Allocate host memory and initialized host data
+2. Allocate device memory
+3. Transfer input data from host to device memory
+4. Execute kernels
+5. Transfer output from device memory to host
+
+So far, we have done step 1 and 4. We will add step 2, 3, and 5 to our vector addition program and finish this exercise. 
+
+### Device memory management
+
+CUDA provides several functions for allocating device memory. The most common ones are `cudaMalloc()` and `cudaFree()`. The syntax for both functions are as follow
+
+```C
+cudaMalloc(void **devPtr, size_t count);
+cadaFree(void *devPtr);
+```
+
+`cudaMalloc()` allocates memory of size `count` in the device memory and updates the device pointer `devPtr` to the allocated memory. `cudaFree()` deallocates a region of the device memory where the device pointer `devPtr` points to. They are comparable to `malloc()` and `free()` in C, respectively
+
+### Memory transfer
+
+Transfering date between host and device memory can be done through `cudaMemcpy` function, which is similar to `memcpy` in C. The syntax of `cudaMemcpy` is as follow
+
+```C
+cudaMemcpy(void *dst, void *src, size_t count, cudaMemcpyKind kind)
+```
+
+The function copy a memory of size `count` from `src` to `dst`. `kind` indicates the direction. For typical usage, the value of `kind` is either `cudaMemcpyHostToDevice` or `cudaMemcpyDeviceToHost`. There are other possible values but we will not touch them in this tutorial. 
+
+### Exercise (Con't): Completing vector addition
+
+5. Allocate and deallocate device memory for array `a`, `b`, and `out`. 
+
+6. Transfer `a`, `b`, and `out` between host and device memory. 
+    * Quiz: Which array must be transferred before and after kernel execution ?
+
+#### Example: Solution for array 'a'
+
+```C
+void main(){
+    float *a, *b, *out;
+    float *d_a;
+
+    a = (float*)malloc(sizeof(float) * N);
+
+    // Allocate device memory for a
+    cudaMalloc((void**)&d_a, sizeof(float) * N);
+    
+    // Transfer data from host to device memory
+    cudaMemcpy(d_a, a, sizeof(float) * N, cudaMemcpyHostToDevice);
+
+    …
+    vector_add<<<1,1>>>(out, d_a, b, N);
+    …
+
+    // Cleanup after kernel execution
+    cudaFree(d_a);    free(a);
+}
+```
+
+7. Compile and measure performance. (See. solution in ([`./solutions/vector_add.cu`](./solutions/vector_add.cu)) )
+
+```bash
+$> nvcc vector_add.cu -o vector_add
+$> time ./vector_add
+```
+
+## Profiling performance 
+
+Using `time` does not give much information about the program performance. NVIDIA provides a commandline profiler tool called `nvprof`. 
+
+To profile our vector addition, use following command
+
+```bash
+$> nvprof ./vector_add
+```
+
+Following is an example profiling result
+
+```bash
+==28348== NVPROF is profiling process 28348, command: ./vector_add
+PASSED
+==28348== Profiling application: ./a.out
+==28348== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 97.43%  1.81668s         1  1.81668s  1.81668s  1.81668s  vector_add(float*, float*, float*, int)
+```
 
 ## Acknowledgments
 
