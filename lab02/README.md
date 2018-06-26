@@ -44,12 +44,19 @@ __global__ void vector_add(float *out, float *a, float *b, int n) {
  
 ![parallel thread](./01_parallel_thread.png "parallel thread")
 
-The main idea is to split array into subarrays, where each subarray contains 256 elements. Instead of iterate through each element, the loop iterates through each subarray. The summation of the subarray is computed simultaneously by assigning the `i`-th thread to the `i`-th element of the subarray. 
+The main idea is to virtually split the array into subarrays, where each subarray contains 256 elements. Instead of iterate through each element, the loop iterates through each subarray. The summation of the subarray is computed simultaneously by assigning the `i`-th thread to the `i`-th element of the subarray. 
 
-* In the `0`-th iteration, the `i`-th thread will compute the summation of `a[i]` and `b[i]`. 
-* In the `1`-st iteration, the `i`-th thread will compute the summation of `a[i + 256]` and `b[i + 256]`. 
+When converting this idea back to the whole array, we get the following 
+* In the `0`-th iteration, the `i`-th thread computes the summation of `a[i]` and `b[i]`. 
+* In the `1`-st iteration, the `i`-th thread computes the summation of `a[i + 256]` and `b[i + 256]`. 
 * ...
-* In the `n`-th iteration, the `i`-th thread will compute the summation of `a[i + 256 * n]` and `b[i + 256 * n]`. 
+* In the `n`-th iteration, the `i`-th thread computes the summation of `a[i + 256 * n]` and `b[i + 256 * n]`. 
+
+> **EXERCISE: Try to implement this in `vector_add_thread.cu`**
+
+See the solution in [`solutions/vector_add_thread.cu`](.solutions/vector_add_thread.cu)
+
+
 
 ## Wrap up
 
