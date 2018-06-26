@@ -224,7 +224,7 @@ Time(%)      Time     Calls       Avg       Min       Max  Name
 
 In this tutorial, we demonstrate how to write a simple vector addition in CUDA. We introduced GPU kernels and its execution from host code. Moreover, we introduced the concept of separated memory space between CPU and GPU. We also demonstrate how to manage the device memory. 
 
-However, we still not run program in parallel. The kernel execution configuration `<<<1,1>>>` indicates that the kernel is launched with only 1 thread. In the next [tutorial](../lab02), we will modify vector addition to run in parallel. 
+However, we still not run program in parallel. The kernel execution configuration `<<<1,1>>>` indicates that the kernel is launched with only 1 thread. In the next [tutorial](../lab02/), we will modify vector addition to run in parallel. 
 
 
 ## Acknowledgments

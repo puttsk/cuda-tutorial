@@ -5,3 +5,4 @@
 *.cubin
 *.fatbin
 a.out
+.DS_Store
