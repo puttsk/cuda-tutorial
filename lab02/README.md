@@ -2,11 +2,11 @@
 
 ## Introduction 
 
-In [tutorial 01](../lab01/), we implemented vector addition in CUDA. However, the program runs using only one GPU thread. The strength of GPU lies in its massive parallelism. In this tutorial, we will explore how to implement parallel program for GPUs. 
+In [tutorial 01](../lab01/), we implemented vector addition in CUDA using only one GPU thread. However, the strength of GPU lies in its massive parallelism. In this tutorial, we will explore how to exploit GPU parallelism. 
 
 ## Going parallel
 
-CUDA use a kernel execution configuration `<<<...>>>` to tell CUDA runtime how many threads to launch on GPU. Threads are organized in a group called "*thread block*", where all threads inside the same thread block will run on the same multiprocessor. Kernel can launch multiple thread blocks, organized into a "*grid*" structure. 
+CUDA use a kernel execution configuration `<<<...>>>` to tell CUDA runtime how many threads to launch on GPU. CUDA organizes threads into a group called "**_thread block_**". Kernel can launch multiple thread blocks, organized into a "**_grid_**" structure. 
 
 The syntax of kernel execution configuration is as follows 
 
@@ -16,43 +16,40 @@ The syntax of kernel execution configuration is as follows
 
 Which indicate that a kernel launches with a grid of `M` thread blocks. Each thread block has `T` parallel threads. 
 
-## Exercise 1: Parallelizing vector addition using thread block level parallelism
+## Exercise 1: Parallelizing vector addition using multithread
 
-In this exercise, we will parallelize vector addition from tutorial 1 ([`vector_add.cu`](./vector_add.cu)) using a thread block with 256 threads. The new kernel execution configuration is shown below. 
+In this exercise, we will parallelize vector addition from tutorial 01 ([`vector_add.cu`](./vector_add.cu)) using a thread block with 256 threads. The new kernel execution configuration is shown below. 
 
 ```C
 vector_add <<< 1 , 256 >>> (out, d_a, b, N);
 ```
 
-CUDA provides built-in variables for accessing thread information. In this exercise, we will use two of them: `threadIdx.x` and `blockIdx.x`. `threadIdx.x` stores the index of current thread in the block and `blockDim.x` stores the size of thread block (number of threads in the thread block). 
+CUDA provides built-in variables for accessing thread information. In this exercise, we will use two of them: `threadIdx.x` and `blockIdx.x`. 
 
-For the `vector_add()` configuration, the value of `blockDim.x` is 256. For `i`-th threads, the value of `threadIdx.x` is `i`. The value of `i` ranges from 0 to 255. 
+* `threadIdx.x` contains the index of the thread within the block 
+* `blockDim.x` contains the size of thread block (number of threads in the thread block). 
+
+For the `vector_add()` configuration, ะhe value of `threadIdx.x` ranges from 0 to 255 and the value of `blockDim.x` is 256.
 
 ### Parallelizing idea
 
-Recalls the kernel of single thread version in [`vector_add.cu`](./vector_add.cu)
+Recalls the kernel of single thread version in [`vector_add.cu`](./vector_add.cu). Notes that we modified the `vector_add()` kernel a bit to make the explanation easier. 
 
 ```C
 __global__ void vector_add(float *out, float *a, float *b, int n) {
-    for(int i = 0; i < n; i++){
+    int index = 0;
+    int stride = 1
+    for(int i = index; i < n; i += stride){
         out[i] = a[i] + b[i];
     }
 }
 ```
 
- In this implementation, one thread iterates through and computes the element-wise summation of the whole array. With a thread block of 256 threads, we can perform the summation of 256 elements simultaneously instead of one by one. 
+In this implementation, only one thread computes vector addition by iterating through the whole arrays. With 256 threads, the addition can be spread across threads and computed simultaneously. 
 
-The main idea is to virtually split the array into subarrays, where each subarray contains 256 elements. Instead of iterate through each element, the loop iterates through each subarray. The summation of the subarray is computed simultaneously by assigning the `i`-th thread to the `i`-th element of the subarray. 
+For the `k`-th thread, the loop starts from `k`-th element and iterates through the array with a loop `stride` of 256. For example, in the 0-th iteration, the `k`-th thread computes the addition of `k`-th element. In the next iteration, the `k`-th thread computes the addition of `(k+256)`-th element, and so on. Following figure shows an illustration of the idea. 
 
 ![parallel thread](./01_parallel_thread.png "parallel thread")
-
-<!--
-When converting this idea back to the whole array, we get the following 
-* In the `0`-th iteration, the `i`-th thread computes the summation of `a[i]` and `b[i]`. 
-* In the `1`-st iteration, the `i`-th thread computes the summation of `a[i + 256]` and `b[i + 256]`. 
-* ...
-* In the `n`-th iteration, the `i`-th thread computes the summation of `a[i + 256 * n]` and `b[i + 256 * n]`. 
--->
 
 **EXERCISE: Try to implement this in `vector_add_thread.cu`**
 
@@ -73,12 +70,26 @@ $> nvprof ./vector_add_thread
 
 See the solution in [`solutions/vector_add_thread.cu`](./solutions/vector_add_thread.cu)
 
+## Exercise 2: Adding more thread blocks
 
-## Exercise 2: Using whole GPU
+CUDA GPUs have several parallel processors called **_Streaming Multiprocessors_** or **_SMs_**. Each SM consists of multiple parallel processors and can run multiple concurrent thread blocks. To take advantage of CUDA GPUs, kernel should be launched with multiple thread blocks. This exercise will expand the vector addition from exercise 1 to uses multiple thread blocks. 
 
+Similar to thread information, CUDA provides built-in variables for accessing block information. In this exercise, we will use two of them: `blockIdx.x` and `gridDim.x`. 
 
+* `blockIdx.x` contains the index of the block with in the grid
+* `gridDim.x` contains the size of the grid
 
+### Parallelizing idea
 
+We will use multiple thread blocks to create `N` threads and use each thread to compute an addition of each elements. In this exercise, we will use 256 threads per thread block like Exercise 1. Assumes that `N` is divisible by 256, we need `N/256` blocks to have at least `N` threads. Following is an illustration of the parallelization idea. 
+
+![parallel block](./02_parallel_block.png "parallel block")
+
+To assign a thread to a specific element, we need a unique index for each thread. We will use variable `tid` to store this index, which can be computed as follow
+
+```C
+int tid = blockIdx.x * blockDim.x + threadIdx.x;
+```
 
 ## Wrap up
 

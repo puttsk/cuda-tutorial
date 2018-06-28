@@ -2,7 +2,7 @@
 
 ## Introduction 
 
-This tutorial is an introduction for writing your first CUDA C program. We will use CUDA runtime API throughout this tutorial. 
+This tutorial is an introduction for writing your first CUDA C program and offload computation to a GPU. We will use CUDA runtime API throughout this tutorial. 
 
 ## A quick comparison between CUDA and C
 
@@ -42,9 +42,9 @@ int main() {
 </tr>
 </table>
 
-The major difference between C and CUDA implementation is `__global__` specifier and `<<<...>>>` syntax. The ```__global__``` specifier indicates a function that runs on device (GPU). The function can be called through host code, e.g. the `main()` function in the example. The function is also known as "*kernels*". 
+The major difference between C and CUDA implementation is `__global__` specifier and `<<<...>>>` syntax. The ```__global__``` specifier indicates a function that runs on device (GPU). Such function can be called through host code, e.g. the `main()` function in the example, and is also known as "*kernels*". 
 
-When a kernel is called, its execution configuration is provided through `<<<...>>>` syntax, e.g. `cuda_hello<<<1,1>>>()` from the example. In CUDA term, this is called "*kernel launch*". We will discuss about the parameter `(1,1)` later in this tutorial. 
+When a kernel is called, its execution configuration is provided through `<<<...>>>` syntax, e.g. `cuda_hello<<<1,1>>>()`. In CUDA terminology, this is called "*kernel launch*". We will discuss about the parameter `(1,1)` later in this [tutorial 02](../lab02/). 
 
 ## Compiling CUDA programs
 
@@ -54,7 +54,7 @@ Compiling a CUDA program is similar to C program. NVIDIA provides a CUDA compile
 $> nvcc hello.cu -o hello
 ```
 
-For the latest version of `nvcc`, you might see following warning when compiling a CUDA program using above command
+You might see following warning when compiling a CUDA program using above command
 
 ```
 nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
@@ -66,7 +66,7 @@ This warning can be ignored as of now.
 
 The CUDA hello world example does nothing, and even if the program is compiled, nothing will show up on screen. To get things into action, we will looks at vector addition. 
 
-Following is an example vector addition implemented in C ([`./vector_add.c`](./vector_add.c)). The example computes the addtion of two vectors stored in array `a` and `b` and put the result in array `out`.
+Following is an example of vector addition implemented in C ([`./vector_add.c`](./vector_add.c)). The example computes the addtion of two vectors stored in array `a` and `b` and put the result in array `out`.
 
 ```C
 #define N 10000000
