@@ -81,7 +81,7 @@ Similar to thread information, CUDA provides built-in variables for accessing bl
 
 ### Parallelizing idea
 
-We will use multiple thread blocks to create `N` threads and use each thread to compute an addition of each elements. In this exercise, we will use 256 threads per thread block like Exercise 1. Assumes that `N` is divisible by 256, we need `N/256` blocks to have at least `N` threads. Following is an illustration of the parallelization idea. 
+We will use multiple thread blocks to create `N` threads and use each thread to compute an addition of each elements. In this exercise, we will use 256 threads per thread block like Exercise 1. Assumes that `N` is divisible by 256, we need `N/256` thread blocks to have a total of at least `N` threads. Following is an illustration of the parallelization idea. 
 
 ![parallel block](./02_parallel_block.png "parallel block")
 
@@ -91,8 +91,33 @@ To assign a thread to a specific element, we need a unique index for each thread
 int tid = blockIdx.x * blockDim.x + threadIdx.x;
 ```
 
+**EXERCISE: Try to implement this in `vector_add_block.cu`**
+
+1. Copy `vector_add.cu` to `vector_add_block.cu`
+
+```bash
+$> cp vector_add.cu vector_add_thread.cu
+```
+
+2. Parallelize `vector_add()` using multiple thread blocks. 
+
+3. Handle case when `N` is an arbitrary number. 
+  * HINT: Add a condition to check that the thread work within the acceptable array index range. 
+
+4. Compile and profile the program
+
+```bash
+$> nvcc vector_add_block.cu -o vector_add_block
+$> nvprof ./vector_add_block
+```
+
+See the solution in [`solutions/vector_add_block.cu`](./solutions/vector_add_block.cu)
+
 ## Wrap up
 
+In this tutorial, we learned about GPU threads, thread blocks, and grid. We parallized vector addition using multiple threads and multiple thread blocks. 
+
+This tutorial should give you some rough idea of how to parallelize program on GPUs. 
 
 ## Acknowledgments
 
