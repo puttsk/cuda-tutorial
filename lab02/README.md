@@ -59,7 +59,7 @@ For the `k`-th thread, the loop starts from `k`-th element and iterates through 
 $> cp vector_add.cu vector_add_thread.cu
 ```
 
-2. Parallelize `vector_add()`. 
+2. Parallelize `vector_add()` using a thread block with 256 threads. 
 
 3. Compile and profile the program
 
