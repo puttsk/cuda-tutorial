@@ -6,7 +6,6 @@ pages:
     - 'Tutorial 02: CUDA in Actions': 'tutorials/tutorial02/README.md'
 theme: readthedocs
 markdown_extensions:
-  - markdown.extensions.codehilite
   - markdown.extensions.extra
 
   
