@@ -6,7 +6,7 @@ Following is a list of available tutorials and their description.
 
 | Name                                             | Description   |
 |--------------------------------------------------|---------------|
-| [Tutorial 01: Say Hello to CUDA](./tutorials/tutorial01/) | Writing first CUDA program |
+| [Tutorial 01: Say Hello to CUDA](./tutorials/tutorial01/) | Introduction to CUDA C programming |
 | [Tutorial 02: CUDA in Actions](./tutorials/tutorial02/)   | Introduction to CUDA parallelism |
 | | |
 
