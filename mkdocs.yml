@@ -1,0 +1,7 @@
+site_name: CUDA Tutorial
+pages:
+  - Home: index.md
+  - Tutorials:
+    - Tutorial 01: tutorials/tutorial01/README.md
+    - Tutorial 02: tutorials/tutorial02/README.md
+theme: readthedocs

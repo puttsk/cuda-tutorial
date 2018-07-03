@@ -6,3 +6,4 @@
 *.fatbin
 a.out
 .DS_Store
+/venv
