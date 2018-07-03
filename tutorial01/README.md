@@ -25,7 +25,7 @@ int main() {
 
 </div>
 
-<div markdown="1" style="float:none;">
+<div markdown="1">
 
 **CUDA**
 
