@@ -1,4 +1,4 @@
-# Lab 01: Say Hello to CUDA
+# Tutorial 01: Say Hello to CUDA
 
 ## Introduction 
 
@@ -44,7 +44,7 @@ int main() {
 
 The major difference between C and CUDA implementation is `__global__` specifier and `<<<...>>>` syntax. The ```__global__``` specifier indicates a function that runs on device (GPU). Such function can be called through host code, e.g. the `main()` function in the example, and is also known as "*kernels*". 
 
-When a kernel is called, its execution configuration is provided through `<<<...>>>` syntax, e.g. `cuda_hello<<<1,1>>>()`. In CUDA terminology, this is called "*kernel launch*". We will discuss about the parameter `(1,1)` later in this [tutorial 02](../lab02/). 
+When a kernel is called, its execution configuration is provided through `<<<...>>>` syntax, e.g. `cuda_hello<<<1,1>>>()`. In CUDA terminology, this is called "*kernel launch*". We will discuss about the parameter `(1,1)` later in this [tutorial 02](../tutorial02/). 
 
 ## Compiling CUDA programs
 
@@ -224,7 +224,7 @@ Time(%)      Time     Calls       Avg       Min       Max  Name
 
 In this tutorial, we demonstrate how to write a simple vector addition in CUDA. We introduced GPU kernels and its execution from host code. Moreover, we introduced the concept of separated memory space between CPU and GPU. We also demonstrate how to manage the device memory. 
 
-However, we still not run program in parallel. The kernel execution configuration `<<<1,1>>>` indicates that the kernel is launched with only 1 thread. In the next [tutorial](../lab02/), we will modify vector addition to run in parallel. 
+However, we still not run program in parallel. The kernel execution configuration `<<<1,1>>>` indicates that the kernel is launched with only 1 thread. In the next [tutorial](../tutorial02/), we will modify vector addition to run in parallel. 
 
 
 ## Acknowledgments

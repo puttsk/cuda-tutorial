@@ -1,8 +1,8 @@
-# Lab 02: CUDA in Actions
+# Tutorial 02: CUDA in Actions
 
 ## Introduction 
 
-In [tutorial 01](../lab01/), we implemented vector addition in CUDA using only one GPU thread. However, the strength of GPU lies in its massive parallelism. In this tutorial, we will explore how to exploit GPU parallelism. 
+In [tutorial 01](../tutorial01/), we implemented vector addition in CUDA using only one GPU thread. However, the strength of GPU lies in its massive parallelism. In this tutorial, we will explore how to exploit GPU parallelism. 
 
 ## Going parallel
 
