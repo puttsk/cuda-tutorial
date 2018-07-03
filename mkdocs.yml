@@ -1,7 +1,12 @@
 site_name: CUDA Tutorial
 pages:
-  - Home: index.md
-  - Tutorials:
-    - Tutorial 01: tutorials/tutorial01/README.md
-    - Tutorial 02: tutorials/tutorial02/README.md
+  - 'Home': 'index.md'
+  - 'Tutorials':
+    - 'Tutorial 01: Say Hello to CUDA': 'tutorials/tutorial01/README.md'
+    - 'Tutorial 02: CUDA in Actions': 'tutorials/tutorial02/README.md'
 theme: readthedocs
+markdown_extensions:
+  - markdown.extensions.codehilite
+  - markdown.extensions.extra
+
+  

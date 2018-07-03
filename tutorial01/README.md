@@ -8,26 +8,28 @@ This tutorial is an introduction for writing your first CUDA C program and offlo
 
 Following table compares a hello world program in C and CUDA side-by-side. 
 
-<table>
-<tr><td> <b>C</b> </td><td> <b>CUDA</b> </td></tr>
-<tr>
-<td>
+<div markdown="1" style="float:left;margin-right:10px;">
 
-```C
+**C**
+
+``` C
 void c_hello(){
     printf("Hello World!\n");
 }
 
 int main() {
-    c_hello()
+    c_hello();
     return 0;
 }
 ```
 
-</td>
-<td>
+</div>
 
-```C
+<div markdown="1" style="float:none;>
+
+**CUDA**
+
+``` C
 __global__ void cuda_hello(){
     printf("Hello World from GPU!\n");
 }
@@ -38,9 +40,7 @@ int main() {
 }
 ```
 
-</td>
-</tr>
-</table>
+</div>
 
 The major difference between C and CUDA implementation is `__global__` specifier and `<<<...>>>` syntax. The ```__global__``` specifier indicates a function that runs on device (GPU). Such function can be called through host code, e.g. the `main()` function in the example, and is also known as "*kernels*". 
 
