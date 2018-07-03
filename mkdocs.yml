@@ -5,8 +5,4 @@ pages:
     - 'Tutorial 01: Say Hello to CUDA': 'tutorials/tutorial01/README.md'
     - 'Tutorial 02: CUDA in Actions': 'tutorials/tutorial02/README.md'
 theme: readthedocs
-markdown_extensions:
-  - markdown.extensions.codehilite
-  - markdown.extensions.extra
-
   
