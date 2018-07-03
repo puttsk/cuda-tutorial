@@ -1,17 +1,29 @@
-# Welcome to MkDocs
+# CUDA Tutorial 
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+This repository contains a set of tutorials for CUDA workshop. 
 
-## Commands
+Following is a list of available tutorials and their description. 
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+| Name                                             | Description   |
+|--------------------------------------------------|---------------|
+| [Tutorial 01: Say Hello to CUDA](./tutorials/tutorial01/) | Writing first CUDA program |
+| [Tutorial 02: CUDA in Actions](./tutorials/tutorial02/)   | Introduction to CUDA parallelism |
+| | |
 
-## Project layout
+## Contributing
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Authors
+
+* **Putt Sakdhnagool** - *Initial work* 
+
+See also the list of [contributors](https://github.com/puttsk/cuda-tutorial/graphs/contributors) who participated in this project.
+
+## Issues / Feature request
+
+You can submit bug / issues / feature request using [Tracker](https://github.com/puttsk/cuda-tutorial/issues).
+
+## License
+
+TBD
