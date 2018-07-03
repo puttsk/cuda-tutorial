@@ -115,9 +115,7 @@ See the solution in [`solutions/vector_add_block.cu`](./solutions/vector_add_blo
 
 ## Wrap up
 
-In this tutorial, we learned about GPU threads, thread blocks, and grid. We parallized vector addition using multiple threads and multiple thread blocks. 
-
-This tutorial should give you some rough idea of how to parallelize program on GPUs. 
+This tutorial gives you some rough idea of how to parallelize program on GPUs. So far, we learned about GPU threads, thread blocks, and grid. We parallized vector addition using multiple threads and multiple thread blocks. 
 
 ## Acknowledgments
 
