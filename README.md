@@ -1,4 +1,4 @@
-[![Documentation Status](//readthedocs.org/projects/cuda-tutorial/badge/?version=latest)](https://cuda-tutorial.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](http://readthedocs.org/projects/cuda-tutorial/badge/?version=latest)](https://cuda-tutorial.readthedocs.io/en/latest/?badge=latest)
 
 # CUDA Tutorial
 
