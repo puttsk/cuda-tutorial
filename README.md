@@ -1,3 +1,5 @@
+[![Documentation Status](//readthedocs.org/projects/cuda-tutorial/badge/?version=latest)](https://cuda-tutorial.readthedocs.io/en/latest/?badge=latest)
+
 # CUDA Tutorial
 
 This repository contains a hands-on tutorial for programming CUDA.  
