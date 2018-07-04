@@ -1,5 +1,6 @@
-[![Documentation Status](http://readthedocs.org/projects/cuda-tutorial/badge/?version=latest)](https://cuda-tutorial.readthedocs.io/en/latest/?badge=latest)
-
+[![Github](https://img.shields.io/badge/sources-github-green.svg)](https://github.com/puttsk/cuda-tutorial/)[![Documentation Status](https://readthedocs.org/projects/cuda-tutorial/badge/?version=latest)](https://cuda-tutorial.readthedocs.io/en/latest/?badge=latest)
+ [![GitHub forks](https://img.shields.io/github/stars/puttsk/cuda-tutorial.svg?style=social&label=Star)](https://github.com/puttsk/cuda-tutorial)
+ 
 # CUDA Tutorial 
 
 This repository contains a set of tutorials for CUDA workshop. 
