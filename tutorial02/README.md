@@ -81,11 +81,11 @@ Similar to thread information, CUDA provides built-in variables for accessing bl
 
 ### Parallelizing idea
 
-We will use multiple thread blocks to create `N` threads and use each thread to compute an addition of each elements. In this exercise, we will use 256 threads per thread block like Exercise 1. Assumes that `N` is divisible by 256, we need `N/256` thread blocks to have a total of at least `N` threads. Following is an illustration of the parallelization idea. 
+Instead of using a thread block to iterate over the arrays, we will use multiple thread blocks to create `N` threads; each thread processes an element of the arrays. Following is an illustration of the parallelization idea. 
 
 ![parallel block](./02_parallel_block.png "parallel block")
 
-To assign a thread to a specific element, we need a unique index for each thread. We will use variable `tid` to store this index, which can be computed as follow
+With 256 threads per thread block, we need at least `N/256` thread blocks to have a total of `N` threads. To assign a thread to a specific element, we need to know a unique index for each thread. Such index can be computed as follow
 
 ```C
 int tid = blockIdx.x * blockDim.x + threadIdx.x;
