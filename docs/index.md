@@ -1,6 +1,6 @@
 [![Github](https://img.shields.io/badge/sources-github-green.svg)](https://github.com/puttsk/cuda-tutorial/)[![Documentation Status](https://readthedocs.org/projects/cuda-tutorial/badge/?version=latest)](https://cuda-tutorial.readthedocs.io/en/latest/?badge=latest)
  [![GitHub forks](https://img.shields.io/github/stars/puttsk/cuda-tutorial.svg?style=social&label=Star)](https://github.com/puttsk/cuda-tutorial)
- 
+
 # CUDA Tutorial 
 
 This repository contains a set of tutorials for CUDA workshop. 
@@ -15,7 +15,7 @@ Following is a list of available tutorials and their description.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+TBD
 
 ## Authors
 

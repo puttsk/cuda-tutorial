@@ -5,6 +5,8 @@
 
 This repository contains a hands-on tutorial for programming CUDA. 
 
+* [Online Book](https://cuda-tutorial.readthedocs.io/en/latest/?badge=latest) 
+
 ## Getting Started
 
 These instructions will get you a copy of the tutorial up and running on your CUDA-capable machine. 
@@ -17,7 +19,7 @@ We expect you to have access to CUDA-enabled GPUs (see. [here](https://developer
 
 Following softwares are required for compiling the tutorials 
   * [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads) 
-  * gcc (See. [here](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html) for more supported compilers )
+  * gcc (See. [here](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html) for a list of supported compilers.)
 
 ### Installing
 
@@ -27,7 +29,7 @@ $> cd cuda-tutorial
 ```
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+TBD
 
 ## Authors
 
