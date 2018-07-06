@@ -21,7 +21,7 @@ Which indicate that a kernel launches with a grid of `M` thread blocks. Each thr
 In this exercise, we will parallelize vector addition from tutorial 01 ([`vector_add.cu`](./vector_add.cu)) using a thread block with 256 threads. The new kernel execution configuration is shown below. 
 
 ```C
-vector_add <<< 1 , 256 >>> (out, d_a, b, N);
+vector_add <<< 1 , 256 >>> (d_out, d_a, d_b, N);
 ```
 
 CUDA provides built-in variables for accessing thread information. In this exercise, we will use two of them: `threadIdx.x` and `blockIdx.x`. 
