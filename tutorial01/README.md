@@ -213,15 +213,15 @@ To profile our vector addition, use following command
 $> nvprof ./vector_add
 ```
 
-Following is an example profiling result
+Following is an example profiling result on Tesla M2050
 
 ```
-==28348== NVPROF is profiling process 28348, command: ./vector_add
-PASSED
-==28348== Profiling application: ./a.out
-==28348== Profiling result:
-Time(%)      Time     Calls       Avg       Min       Max  Name
- 97.43%  1.81668s         1  1.81668s  1.81668s  1.81668s  vector_add(float*, float*, float*, int)
+==6326== Profiling application: ./vector_add
+==6326== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 97.55%  1.42529s         1  1.42529s  1.42529s  1.42529s  vector_add(float*, float*, float*, int)
+  1.39%  20.318ms         2  10.159ms  10.126ms  10.192ms  [CUDA memcpy HtoD]
+  1.06%  15.549ms         1  15.549ms  15.549ms  15.549ms  [CUDA memcpy DtoH]
 ```
 
 ## Wrap up
