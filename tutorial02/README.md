@@ -70,6 +70,19 @@ $> nvprof ./vector_add_thread
 
 See the solution in [`solutions/vector_add_thread.cu`](./solutions/vector_add_thread.cu)
 
+### Performance 
+
+Following is the profiling result on Tesla M2050
+
+```
+==6430== Profiling application: ./vector_add_thread
+==6430== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 39.18%  22.780ms         1  22.780ms  22.780ms  22.780ms  vector_add(float*, float*, float*, int)
+ 34.93%  20.310ms         2  10.155ms  10.137ms  10.173ms  [CUDA memcpy HtoD]
+ 25.89%  15.055ms         1  15.055ms  15.055ms  15.055ms  [CUDA memcpy DtoH]
+```
+
 ## Exercise 2: Adding more thread blocks
 
 CUDA GPUs have several parallel processors called **_Streaming Multiprocessors_** or **_SMs_**. Each SM consists of multiple parallel processors and can run multiple concurrent thread blocks. To take advantage of CUDA GPUs, kernel should be launched with multiple thread blocks. This exercise will expand the vector addition from exercise 1 to uses multiple thread blocks. 
@@ -112,6 +125,27 @@ $> nvprof ./vector_add_block
 ```
 
 See the solution in [`solutions/vector_add_block.cu`](./solutions/vector_add_block.cu)
+
+### Performance 
+
+Following is the profiling result on Tesla M2050
+
+```
+==6564== Profiling application: ./vector_add_block
+==6564== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 55.65%  20.312ms         2  10.156ms  10.150ms  10.162ms  [CUDA memcpy HtoD]
+ 41.24%  15.050ms         1  15.050ms  15.050ms  15.050ms  [CUDA memcpy DtoH]
+  3.11%  1.1347ms         1  1.1347ms  1.1347ms  1.1347ms  vector_add(float*, float*, float*, int)
+```
+
+## Comparing Performance
+
+| Version         | Execution Time (ms) |  Speedup | 
+|-----------------|--------------------:|---------:|
+| 1 thread        |  1425.29            |   1.00x  |
+| 1 block         |    22.78            |  62.56x  |
+| Multiple blocks |     1.13            |1261.32x  | 
 
 ## Wrap up
 
