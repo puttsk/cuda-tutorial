@@ -104,9 +104,9 @@ With 256 threads per thread block, we need at least `N/256` thread blocks to hav
 int tid = blockIdx.x * blockDim.x + threadIdx.x;
 ```
 
-**EXERCISE: Try to implement this in `vector_add_block.cu`**
+**EXERCISE: Try to implement this in `vector_add_grid.cu`**
 
-1. Copy `vector_add.cu` to `vector_add_block.cu`
+1. Copy `vector_add.cu` to `vector_add_grid.cu`
 
 ```bash
 $> cp vector_add.cu vector_add_thread.cu
@@ -120,18 +120,18 @@ $> cp vector_add.cu vector_add_thread.cu
 4. Compile and profile the program
 
 ```bash
-$> nvcc vector_add_block.cu -o vector_add_block
-$> nvprof ./vector_add_block
+$> nvcc vector_add_grid.cu -o vector_add_grid
+$> nvprof ./vector_add_grid
 ```
 
-See the solution in [`solutions/vector_add_block.cu`](./solutions/vector_add_block.cu)
+See the solution in [`solutions/vector_add_grid.cu`](./solutions/vector_add_block.cu)
 
 ### Performance 
 
 Following is the profiling result on Tesla M2050
 
 ```
-==6564== Profiling application: ./vector_add_block
+==6564== Profiling application: ./vector_add_grid
 ==6564== Profiling result:
 Time(%)      Time     Calls       Avg       Min       Max  Name
  55.65%  20.312ms         2  10.156ms  10.150ms  10.162ms  [CUDA memcpy HtoD]
