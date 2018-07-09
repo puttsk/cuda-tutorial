@@ -5,7 +5,7 @@
 
 This repository contains a hands-on tutorial for programming CUDA. 
 
-* [Online Book](https://cuda-tutorial.readthedocs.io/en/latest/?badge=latest) 
+* [Online Reference Version](https://cuda-tutorial.readthedocs.io/en/latest/?badge=latest) 
 
 ## Getting Started
 
