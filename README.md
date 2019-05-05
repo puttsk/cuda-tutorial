@@ -13,13 +13,12 @@ These instructions will get you a copy of the tutorial up and running on your CU
 
 ### Prerequisites
 
-> For JCSSE 2018 workshop attendees, you can skip this step. 
+We expect you to have access to CUDA-enabled GPUs (see. [here](https://developer.nvidia.com/cuda-gpus)) and have sufficient C/C++ programming knowledge.
 
-We expect you to have access to CUDA-enabled GPUs (see. [here](https://developer.nvidia.com/cuda-gpus)) and have sufficient C/C++ programming knowledge. 
+Following softwares are required for compiling the tutorials
 
-Following softwares are required for compiling the tutorials 
-  * [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads) 
-  * gcc (See. [here](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html) for a list of supported compilers.)
+* [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
+* gcc (See. [here](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html) for a list of supported compilers.)
 
 ### Installing
 
@@ -27,13 +26,14 @@ Following softwares are required for compiling the tutorials
 $> git clone https://github.com/puttsk/cuda-tutorial.git
 $> cd cuda-tutorial
 ```
+
 ## Contributing
 
 TBD
 
 ## Authors
 
-* **Putt Sakdhnagool** - *Initial work* 
+* **Putt Sakdhnagool** - *Initial work*
 
 See also the list of [contributors](https://github.com/puttsk/cuda-tutorial/graphs/contributors) who participated in this project.
 
@@ -46,4 +46,5 @@ You can submit bug / issues / feature request using [Tracker](https://github.com
 TBD
 
 ## Acknowledgments
-  * [Tutorial 1](./tutorial01/) and [2](./tutorial02/) are adopted from [An Even Easier Introduction to CUDA](https://devblogs.nvidia.com/even-easier-introduction-cuda/) by Mark Harris, NVIDIA and [CUDA C/C++ Basics](http://www.int.washington.edu/PROGRAMS/12-2c/week3/clark_01.pdf) by Cyril Zeller, NVIDIA.
+
+* [Tutorial 1](./tutorial01/) and [2](./tutorial02/) are adopted from [An Even Easier Introduction to CUDA](https://devblogs.nvidia.com/even-easier-introduction-cuda/) by Mark Harris, NVIDIA and [CUDA C/C++ Basics](http://www.int.washington.edu/PROGRAMS/12-2c/week3/clark_01.pdf) by Cyril Zeller, NVIDIA.
