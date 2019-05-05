@@ -124,7 +124,7 @@ $> nvcc vector_add_grid.cu -o vector_add_grid
 $> nvprof ./vector_add_grid
 ```
 
-See the solution in [`solutions/vector_add_grid.cu`](./solutions/vector_add_block.cu)
+See the solution in [`solutions/vector_add_grid.cu`](./solutions/vector_add_grid.cu)
 
 ### Performance 
 
