@@ -150,7 +150,7 @@ CUDA provides several functions for allocating device memory. The most common on
 
 ```C
 cudaMalloc(void **devPtr, size_t count);
-cadaFree(void *devPtr);
+cudaFree(void *devPtr);
 ```
 
 `cudaMalloc()` allocates memory of size `count` in the device memory and updates the device pointer `devPtr` to the allocated memory. `cudaFree()` deallocates a region of the device memory where the device pointer `devPtr` points to. They are comparable to `malloc()` and `free()` in C, respectively
