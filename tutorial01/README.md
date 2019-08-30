@@ -192,7 +192,8 @@ void main(){
     …
 
     // Cleanup after kernel execution
-    cudaFree(d_a);    free(a);
+    cudaFree(d_a);
+    free(a);
 }
 ```
 
