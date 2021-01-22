@@ -136,7 +136,7 @@ You will notice that the program does not work correctly. The reason is CPU and 
 
 For data to be accessible by GPU, it must be presented in the device memory. CUDA provides APIs for allocating device memory and data transfer between host and device memory. Following is the common workflow of CUDA programs. 
 
-1. Allocate host memory and initialized host data
+1. Allocate host memory and initialize host data
 2. Allocate device memory
 3. Transfer input data from host to device memory
 4. Execute kernels
