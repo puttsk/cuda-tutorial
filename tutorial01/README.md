@@ -157,7 +157,7 @@ cudaFree(void *devPtr);
 
 ### Memory transfer
 
-Transfering date between host and device memory can be done through `cudaMemcpy` function, which is similar to `memcpy` in C. The syntax of `cudaMemcpy` is as follow
+Transfering data between host and device memory can be done through `cudaMemcpy` function, which is similar to `memcpy` in C. The syntax of `cudaMemcpy` is as follow
 
 ```C
 cudaMemcpy(void *dst, void *src, size_t count, cudaMemcpyKind kind)
