@@ -24,12 +24,12 @@ In this exercise, we will parallelize vector addition from tutorial 01 ([`vector
 vector_add <<< 1 , 256 >>> (d_out, d_a, d_b, N);
 ```
 
-CUDA provides built-in variables for accessing thread information. In this exercise, we will use two of them: `threadIdx.x` and `blockIdx.x`. 
+CUDA provides built-in variables for accessing thread information. In this exercise, we will use two of them: `threadIdx.x` and `blockDim.x`. 
 
 * `threadIdx.x` contains the index of the thread within the block 
 * `blockDim.x` contains the size of thread block (number of threads in the thread block). 
 
-For the `vector_add()` configuration, ะhe value of `threadIdx.x` ranges from 0 to 255 and the value of `blockDim.x` is 256.
+For the `vector_add()` configuration, the value of `threadIdx.x` ranges from 0 to 255 and the value of `blockDim.x` is 256.
 
 ### Parallelizing idea
 
