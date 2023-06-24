@@ -44,6 +44,7 @@ __global__ void cuda_hello(){
 
 int main() {
     cuda_hello<<<1,1>>>(); 
+    cudaDeviceSynchronize(); // force flush stdout from gpu before we exit
     return 0;
 }
 ```
