@@ -38,7 +38,7 @@ Recalls the kernel of single thread version in [`vector_add.cu`](./vector_add.cu
 ```C
 __global__ void vector_add(float *out, float *a, float *b, int n) {
     int index = 0;
-    int stride = 1;
+    int stride = blockDim.x;
     for(int i = index; i < n; i += stride){
         out[i] = a[i] + b[i];
     }
